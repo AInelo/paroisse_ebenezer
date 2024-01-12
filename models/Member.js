@@ -15,6 +15,9 @@ const memberSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  number: {
+    type: String,
+  }
   
 })
 
