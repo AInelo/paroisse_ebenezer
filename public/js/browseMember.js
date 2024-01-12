@@ -1,8 +1,8 @@
 const membersDOM = document.querySelector('#member')
 // const loadingDOM = document.querySelector('.loading-text')
-const formDOM = document.querySelector('.task-form')
-const taskInputDOM = document.querySelector('.task-input')
-const formAlertDOM = document.querySelector('.form-alert')
+// const formDOM = document.querySelector('.task-form')
+// const taskInputDOM = document.querySelector('.task-input')
+// const formAlertDOM = document.querySelector('.form-alert')
 // Load tasks from /api/tasks
 const showMembers = async () => {
 //   loadingDOM.style.visibility = 'visible'
@@ -18,10 +18,10 @@ const showMembers = async () => {
     const allMembers = members
       .map((member) => {
         const { _id: memberID, name, lastname, url } = member
-        return `<div class="text-center text-gray-500 dark:text-gray-400">
+        return `<div href="member.html?id=${memberID}" class="text-center text-gray-500 dark:text-gray-400">
         <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://firebasestorage.googleapis.com/v0/b/seidev.appspot.com/o/Ebenezer%2FWhatsApp%20Image%202024-01-05%20at%2023.10.16.jpeg?alt=media&token=34e8051d-fbc2-4583-841a-5ed4069007b9" alt="Bonnie Avatar">
         <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            <a href="">${name} & ${lastname}</a>
+            <a href="">${name} ${lastname}</a>
         </h3>
         <p>Fidèle</p>
             <ul class="flex justify-center mt-4 space-x-4">
@@ -32,44 +32,15 @@ const showMembers = async () => {
                 </li>
                 
             </ul>
-        </div>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <div class="single-member ${completed && 'member-completed'}">
-                  <h5>
-                    <span>
-                      <i class="far fa-check-circle">
-                      </i>
-                    </span>${name}
-                  </h5>
-                  <div class="member-links">
-
-                    <!-- edit link -->
-                    <a href="member.html?id=${memberID}"  class="edit-link">
-                      <i class="fas fa-edit"></i>
-                    </a>
-                    <!-- delete btn -->
-                    <button type="button" class="delete-btn" data-id="${memberID}">
-                      <i class="fas fa-trash"></i>
-                    </button>
-                  </div>
-                </div>`
+        </div>`
       })
       .join('')
+      console.log(allMembers)
     membersDOM.innerHTML = allMembers
   } catch (error) {
     membersDOM.innerHTML =
       '<h5 class="empty-list">There was an error, please try later....</h5>'
+      console.log(allMembers)
   }
 //   loadingDOM.style.visibility = 'hidden'
 }
