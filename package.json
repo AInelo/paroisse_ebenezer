@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "npm run build:css && nodemon server.js",
-    "build:css": "tailwindcss build build.css -o public/css/styles.css"
+    "build:css": "tailwindcss build public/css/build.css -o public/css/styles.css"
   },
   "keywords": [],
   "author": "",

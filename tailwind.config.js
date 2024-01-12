@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
+  content: [
+    "./public/*.html", // Chemin vers les fichiers HTML
+    
+  ],
   darkMode: 'class',
   theme: {
     extend: {
