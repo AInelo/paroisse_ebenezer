@@ -19,7 +19,7 @@ const showMembers = async () => {
       .map((member) => {
         const { _id: memberID, name, lastname, url } = member
         return `<div href="member.html?id=${memberID}" class="text-center text-gray-500 dark:text-gray-400">
-        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://firebasestorage.googleapis.com/v0/b/seidev.appspot.com/o/Ebenezer%2FWhatsApp%20Image%202024-01-05%20at%2023.10.16.jpeg?alt=media&token=34e8051d-fbc2-4583-841a-5ed4069007b9" alt="Bonnie Avatar">
+        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="${url}" alt="Bonnie Avatar">
         <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             <a href="">${name} ${lastname}</a>
         </h3>
