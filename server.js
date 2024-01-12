@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-// const member = require('./routes/member');
+const member = require('./routes/member');
 const connectDB = require('./db/connectDB');
 require('dotenv').config();
 const notFound = require('./middleware/not-found');
@@ -11,8 +11,8 @@ app.use(express.static('./public'));
 app.use(express.json());
 
 
-// // routes
-// app.use('/api/v1/member', member);
+// routes
+app.use('/api/v1/member', member);
 
 app.use(notFound);
 app.use(errorHandlerMiddleware);
