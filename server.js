@@ -12,7 +12,7 @@ app.use(express.json());
 
 
 // // routes
-// app.use('/api/v1/member', Member);
+// app.use('/api/v1/member', member);
 
 app.use(notFound);
 app.use(errorHandlerMiddleware);
