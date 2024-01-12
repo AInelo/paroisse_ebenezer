@@ -1,11 +1,11 @@
-const membersDOM = document.querySelector('.tasks')
+const membersDOM = document.querySelector('#member')
 // const loadingDOM = document.querySelector('.loading-text')
 const formDOM = document.querySelector('.task-form')
 const taskInputDOM = document.querySelector('.task-input')
 const formAlertDOM = document.querySelector('.form-alert')
 // Load tasks from /api/tasks
 const showMembers = async () => {
-  loadingDOM.style.visibility = 'visible'
+//   loadingDOM.style.visibility = 'visible'
   try {
     const {
       data: { members },
@@ -21,7 +21,7 @@ const showMembers = async () => {
         return `<div class="text-center text-gray-500 dark:text-gray-400">
         <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://firebasestorage.googleapis.com/v0/b/seidev.appspot.com/o/Ebenezer%2FWhatsApp%20Image%202024-01-05%20at%2023.10.16.jpeg?alt=media&token=34e8051d-fbc2-4583-841a-5ed4069007b9" alt="Bonnie Avatar">
         <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            <a href="">Nom & Prénoms</a>
+            <a href="">${name} & ${lastname}</a>
         </h3>
         <p>Fidèle</p>
             <ul class="flex justify-center mt-4 space-x-4">
@@ -66,29 +66,29 @@ const showMembers = async () => {
                 </div>`
       })
       .join('')
-    tasksDOM.innerHTML = allMembers
+    membersDOM.innerHTML = allMembers
   } catch (error) {
-    tasksDOM.innerHTML =
+    membersDOM.innerHTML =
       '<h5 class="empty-list">There was an error, please try later....</h5>'
   }
 //   loadingDOM.style.visibility = 'hidden'
 }
 
-showTasks()
+showMembers()
 
 // delete task /api/tasks/:id
 
-tasksDOM.addEventListener('click', async (e) => {
-  const el = e.target
-  if (el.parentElement.classList.contains('delete-btn')) {
-    // loadingDOM.style.visibility = 'visible'
-    const id = el.parentElement.dataset.id
-    try {
-      await axios.delete(`/api/v1/tasks/${id}`)
-      showTasks()
-    } catch (error) {
-      console.log(error)
-    }
-  }
-//   loadingDOM.style.visibility = 'hidden'
-})
+// tasksDOM.addEventListener('click', async (e) => {
+//   const el = e.target
+//   if (el.parentElement.classList.contains('delete-btn')) {
+//     // loadingDOM.style.visibility = 'visible'
+//     const id = el.parentElement.dataset.id
+//     try {
+//       await axios.delete(`/api/v1/tasks/${id}`)
+//       showTasks()
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
+// //   loadingDOM.style.visibility = 'hidden'
+// })
