@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "build:css": "tailwindcss build path/to/your/css/file.css -o path/to/your/output/file.css"
+    "start": "npm run build:css && nodemon server.js",
+    "build:css": "tailwindcss build build.css -o public/css/styles.css"
   },
   "keywords": [],
   "author": "",
