@@ -4,6 +4,8 @@ const membersDOM = document.querySelector('#member')
 // const taskInputDOM = document.querySelector('.task-input')
 // const formAlertDOM = document.querySelector('.form-alert')
 // Load tasks from /api/tasks
+
+
 const showMembers = async () => {
 //   loadingDOM.style.visibility = 'visible'
   try {
