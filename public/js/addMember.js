@@ -5,10 +5,6 @@ const membersDOM = document.querySelector('#member')
 // const formAlertDOM = document.querySelector('.form-alert')
 // Load tasks from /api/tasks
 
-
-
-
-
 const showMembers = async () => {
 //   loadingDOM.style.visibility = 'visible'
   try {
