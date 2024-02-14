@@ -1054,19 +1054,9 @@ video {
   letter-spacing: -0.025em;
 }
 
-.text-\[\#00acee\] {
-  --tw-text-opacity: 1;
-  color: rgb(0 172 238 / var(--tw-text-opacity));
-}
-
 .text-\[\#39569c\] {
   --tw-text-opacity: 1;
   color: rgb(57 86 156 / var(--tw-text-opacity));
-}
-
-.text-\[\#ea4c89\] {
-  --tw-text-opacity: 1;
-  color: rgb(234 76 137 / var(--tw-text-opacity));
 }
 
 .text-blue-700 {
@@ -1219,11 +1209,6 @@ video {
 :is(.dark .dark\:text-gray-200) {
   --tw-text-opacity: 1;
   color: rgb(229 231 235 / var(--tw-text-opacity));
-}
-
-:is(.dark .dark\:text-gray-300) {
-  --tw-text-opacity: 1;
-  color: rgb(209 213 219 / var(--tw-text-opacity));
 }
 
 :is(.dark .dark\:text-gray-400) {
