@@ -50,7 +50,7 @@ form {
 }
 
 #secondary {
-  background-color: #F9BC35;
+  background-color: #0f94d1;
   border-radius: 0 4rem 4rem 0;
   text-align: center;
 }
@@ -72,11 +72,11 @@ form {
 
 .btn-primary {
   border-color: rgba( 255, 255, 255, 0);
-  background: #f1da36; /* Old browsers */
-background: -moz-linear-gradient(left, #f1da36 0%, #fca86c 99%); /* FF3.6-15 */
-background: -webkit-linear-gradient(left, #f1da36 0%,#fca86c 99%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to right, #f1da36 0%,#fca86c 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1da36', endColorstr='#fca86c',GradientType=1 ); /* IE6-9 */
+  background: #0f94d1; /* Old browsers */
+background: -moz-linear-gradient(left, #0f94d1 0%, #7fb6f5fb 99%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, #0f94d1 0%,#7fb6f5fb 99%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, #0f94d1 0%,#7fb6f5fb 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0f94d1', endColorstr='#fb6f5fb',GradientType=1 ); /* IE6-9 */
 Color format:     Comments
 }
 
