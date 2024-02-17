@@ -23,6 +23,10 @@ const showMembers = async () => {
         return `<div href="member.html?id=${memberID}" class="text-center text-gray-500 dark:text-gray-400">
         <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="${url}" alt="Photo des Fidèles">
         <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <div class="">
+        <input type="text" name="email" id="email" class="col-span-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5" placeholder="${name}" required>
+        <input type="text" name="email" id="email" class="col-span-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5" placeholder="${lastname}" required>
+        </div>
             <a href="">${name} ${lastname}</a>
         </h3>
         <p>Fidèle</p>
