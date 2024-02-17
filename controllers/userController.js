@@ -5,16 +5,14 @@ const { createCustomError } = require ('../errors/custom-error')
 
 
 const signUp = asyncWrapper(async (req, res) => {
-    const { name, email, phno, password } = req.body;
+    const { username, password } = req.body;
 
     const newUser = new User({
-        name,
-        email,
-        phno,
+        username,
         password
     });
 
     await newUser.save();
     console.log('Record Inserted Successfully');
-    res.redirect('signup_success.html');
+    res.redirect('auth.html');
 });
