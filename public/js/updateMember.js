@@ -19,7 +19,12 @@ const showMembers = async () => {
     }
     const allMembers = members
       .map((member) => {
-        const { _id: memberID, name, lastname, url } = member
+        const { 
+          _id: memberID, 
+          name, 
+          lastname, 
+          url 
+        } = member
         return `<div href="member.html?id=${memberID}" class="text-center text-gray-500 dark:text-gray-400">
         <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="${url}" alt="Photo des Fidèles">
         <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -53,6 +58,3 @@ const showMembers = async () => {
 }
 
 showMembers()
-
-
-

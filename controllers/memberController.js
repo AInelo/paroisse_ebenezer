@@ -1,6 +1,7 @@
 const Member = require('../models/Member')
 const asyncWrapper = require('../middleware/async')
 const { createCustomError } = require('../errors/custom-error')
+
 const getAllMembers = asyncWrapper(async (req, res) => {
   const members = await Member.find({})
   res.status(200).json({ members })
