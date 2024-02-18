@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-
 const os = require('os');
 const path = require('path');
 const member = require('./routes/member');
