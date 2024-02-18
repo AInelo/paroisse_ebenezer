@@ -17,7 +17,7 @@ app.use(express.json());
 
 // routes
 app.use('/api/v1/member', member);
-app.use('/SignUp', user);
+app.use('/user', user);
 
 app.use(notFound);
 app.use(errorHandlerMiddleware);
