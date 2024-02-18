@@ -4,6 +4,7 @@ const app = express();
 const os = require('os');
 const path = require('path');
 const member = require('./routes/member');
+const user = require('./routes/user');
 const connectDB = require('./db/connectDB');
 require('dotenv').config();
 const notFound = require('./middleware/not-found');
@@ -17,6 +18,7 @@ app.use(express.json());
 
 // routes
 app.use('/api/v1/member', member);
+app.use('/SignUp', user);
 
 app.use(notFound);
 app.use(errorHandlerMiddleware);
