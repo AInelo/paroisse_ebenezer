@@ -11,7 +11,7 @@ const signUp = asyncWrapper(async (req, res) => {
     });
 
     await newUser.save();
-    
+
     console.log('Record Inserted Successfully');
     res.redirect('auth.html');
 });
@@ -28,7 +28,7 @@ const signIn = asyncWrapper(async (req, res) => {
     }
 
     // Authentification réussie
-    res.redirect('signin_success.html');
+    res.redirect('updatemember.html');
 });
 
 module.exports = { signUp, signIn };
