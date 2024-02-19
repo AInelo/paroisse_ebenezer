@@ -129,7 +129,7 @@ const signUp = asyncWrapper(async (req, res) => {
 
         console.log('Utilisateur créé :', user);
         res.status(201).json({ user });
-        res.redirect('auth.html');
+        return res.redirect('auth.html');
 
     } catch (error) {
         if (error.code === 11000) {
@@ -162,7 +162,7 @@ const signIn = asyncWrapper(async (req, res) => {
 
         // Authentification réussie
         res.status(200).json({ username: existingUser.username });
-        res.redirect('updatemember.html');
+        return res.redirect('updatemember.html');
         // Vous pouvez également envisager de générer un token JWT ici pour l'authentification
     } catch (error) {
         if (error.code === 11000) {
