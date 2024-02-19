@@ -18,7 +18,7 @@ app.use(express.json());
 
 // routes
 app.use('/api/v1/member', memberRoutes);
-app.use('/user', userRoutes);
+app.use('/users', userRoutes);
 
 app.use(notFound);
 app.use(errorHandlerMiddleware);
