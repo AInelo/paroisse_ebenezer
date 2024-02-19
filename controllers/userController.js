@@ -10,10 +10,12 @@ const signUp = asyncWrapper(async (req, res) => {
         password
     });
 
-    await newUser.save();
+    await newUser.create();
 
-    console.log('Record Inserted Successfully');
-    res.redirect('auth.html');
+    // const member = await Member.create(req.body)
+
+    // console.log('Record Inserted Successfully');
+    // res.redirect('auth.html');
 });
 
 
