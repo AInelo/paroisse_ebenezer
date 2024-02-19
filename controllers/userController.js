@@ -50,7 +50,7 @@ const signUp = asyncWrapper(async (req, res) => {
         await newUser.save();
 
         console.log('Record Inserted Successfully');
-        res.redirect('auth.html');
+       // res.redirect('auth.html');
     } catch (error) {
         // Gestion d'autres erreurs inattendues
         const customError = createCustomError('Une erreur s\'est produite lors de l\'inscription.', 500);
