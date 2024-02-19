@@ -35,9 +35,26 @@ const { createCustomError } = require('../errors/custom-error');
 //     res.status(201).json({ user })
 // })
 
+// const signUp = asyncWrapper(async (req, res) => {
+//     try {
+//         const user = await User.create(req.body);
+//         console.log('Utilisateur créé :', user);
+//         res.status(201).json({ user });
+//     } catch (error) {
+//         console.error('Erreur lors de la création de l\'utilisateur :', error);
+//         res.status(500).json({ error: 'Erreur lors de la création de l\'utilisateur' });
+//     }
+// });
+
+
+
+
 const signUp = asyncWrapper(async (req, res) => {
     try {
-        const user = await User.create(req.body);
+        // Créez un nouvel utilisateur à partir des champs requis de req.body
+        const { username, password } = req.body;
+        const user = await User.create({ username, password });
+        
         console.log('Utilisateur créé :', user);
         res.status(201).json({ user });
     } catch (error) {
@@ -45,6 +62,7 @@ const signUp = asyncWrapper(async (req, res) => {
         res.status(500).json({ error: 'Erreur lors de la création de l\'utilisateur' });
     }
 });
+
 
 
 
