@@ -32,7 +32,7 @@ app.use(errorHandlerMiddleware);
    .flat()
    .filter((iface) => iface.family === 'IPv4' && !iface.internal)[0].address;
 
- // console.log(ipAddress);
+ console.log(ipAddress);
 
 //  const Port = process.env.PORT || 3000;
 
