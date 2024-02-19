@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcrypt');
+
 
 const { signUp, signIn } = require('../controllers/userController')
 

@@ -4,6 +4,8 @@ const os = require('os');
 const path = require('path');
 const memberRoutes = require('./routes/memberRoutes');
 const userRoutes = require('./routes/userRoutes');
+const bcrypt = require('bcrypt');
+
 const connectDB = require('./db/connectDB');
 require('dotenv').config();
 const notFound = require('./middleware/not-found');
