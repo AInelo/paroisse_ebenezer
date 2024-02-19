@@ -2,7 +2,7 @@ const User = require('../models/User');
 const asyncWrapper = require('../middleware/async');
 const { createCustomError } = require('../errors/custom-error');
 
-const signUpp = asyncWrapper(async (req, res) => {
+const signUp = asyncWrapper(async (req, res) => {
     const { username, password } = req.body;
 
     const newUser = new User({
@@ -17,7 +17,7 @@ const signUpp = asyncWrapper(async (req, res) => {
 });
 
 
-const signUp = asyncWrapper(async (req, res) => {
+const signUpr = asyncWrapper(async (req, res) => {
     const { username, password } = req.body;
 
     try {
