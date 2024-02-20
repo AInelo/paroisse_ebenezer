@@ -17,25 +17,20 @@ app.use(
     secret: 'lionel',
     resave: false,
     saveUninitialized: false,
+    cookie: {
+      maxAge: 30 * 1000, // 30 secondes en millisecondes
+    },
   })
 );
 
-
-// middleware
-app.use(express.static('./public'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-
-
 // Middleware de vérification d'authentification
-const requireAuth = async (req, res, next) => {
+const requireAuth = (req, res, next) => {
   if (req.session.authenticated) {
     // Si authentifié, autorisez la requête à continuer
-   await next();
+    next();
   } else {
     // Si non authentifié, redirigez vers la page auth.html
-   await res.redirect('/auth.html');
+    res.redirect('/auth.html');
   }
 };
 
@@ -45,44 +40,40 @@ app.get('/updatemember.html', requireAuth, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'updatemember.html'));
 });
 
+// Middleware pour analyser les données JSON et urlencoded
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
+// Middleware pour servir des fichiers statiques depuis le dossier public
+app.use(express.static('./public'));
 
-
-// routes
+// Routes
 app.use('/users', userRoutes);
 app.use('/api/v1/member', memberRoutes);
 
-
+// Middleware pour gérer les erreurs 404
 app.use(notFound);
+
+// Middleware pour gérer les erreurs
 app.use(errorHandlerMiddleware);
-
-
-
-
-
 
 // Obtenez l'adresse IP de la première interface réseau non interne
 const networkInterfaces = os.networkInterfaces();
-// console.log(networkInterfaces);
 const ipAddress = Object.values(networkInterfaces)
   .flat()
   .filter((iface) => iface.family === 'IPv4' && !iface.internal)[0].address;
 
-console.log(ipAddress);
-
-//  const Port = process.env.PORT || 3000;
-
-//  app.listen(Port, ipAddress, () => {
-//    console.log(`Le serveur écoute sur ${ipAddress}:${Port}.....`);
-//  });
-
-
-
+// Définir le port
 const port = process.env.PORT || 5000;
+
+// Démarrer le serveur
 const start = async () => {
   try {
+    // Connexion à la base de données
     await connectDB(process.env.MONGO_URI);
-    app.listen(port,ipAddress, () =>
+
+    // Lancer le serveur
+    app.listen(port, ipAddress, () =>
       console.log(`Server is listening on http://${ipAddress}:${port}`)
     );
   } catch (error) {
@@ -90,4 +81,5 @@ const start = async () => {
   }
 };
 
+// Appeler la fonction pour démarrer le serveur
 start();
