@@ -177,7 +177,12 @@ const signIn = asyncWrapper(async (req, res) => {
         }
 
         // Authentification réussie
-        res.status(200).json({ username: existingUser.username });
+        // Authentification réussie
+        req.session.authenticated = true;
+
+        //res.status(200).json({ username: existingUser.username });
+
+        res.redirect('/updatemember.html');
         
         // Vous pouvez également envisager de générer un token JWT ici pour l'authentification
     } catch (error) {
@@ -192,7 +197,7 @@ const signIn = asyncWrapper(async (req, res) => {
 
 
         // Cette partie du code sera exécutée après l'envoi de la réponse JSON
-        res.redirect('updatemember.html');
+        //res.redirect('updatemember.html');
 
 });
 

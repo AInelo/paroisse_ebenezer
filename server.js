@@ -52,7 +52,7 @@ const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI);
     app.listen(port,ipAddress, () =>
-      console.log(`Server is listening on port ${ipAddress}:${port}...`)
+      console.log(`Server is listening on http://${ipAddress}:${port}...`)
     );
   } catch (error) {
     console.log(error);
