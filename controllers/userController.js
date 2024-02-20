@@ -2,6 +2,7 @@ const User = require('../models/User');
 const asyncWrapper = require('../middleware/async');
 const { createCustomError } = require('../errors/custom-error');
 const bcrypt = require('bcrypt');
+const session = require('express-session');
 
 // const signUp = asyncWrapper(async (req, res) => {
 //     const { username, password } = req.body;
@@ -179,6 +180,7 @@ const signIn = asyncWrapper(async (req, res) => {
         // Authentification réussie
         // Authentification réussie
         req.session.authenticated = true;
+        console.log('Authentification réussie. Authenticated:', req.session.authenticated);
 
         //res.status(200).json({ username: existingUser.username });
 
