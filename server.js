@@ -41,13 +41,13 @@ app.use(errorHandlerMiddleware);
 
 
 // Middleware de vérification d'authentification
-const requireAuth = (req, res, next) => {
+const requireAuth = async (req, res, next) => {
   if (req.session.authenticated) {
     // Si authentifié, autorisez la requête à continuer
-    next();
+   await next();
   } else {
     // Si non authentifié, redirigez vers la page auth.html
-    res.redirect('/auth.html');
+   await res.redirect('/auth.html');
   }
 };
 
@@ -82,7 +82,7 @@ const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI);
     app.listen(port,ipAddress, () =>
-      console.log(`Server is listening on http://${ipAddress}:${port}...`)
+      console.log(`Server is listening on http://${ipAddress}:${port}`)
     );
   } catch (error) {
     console.log(error);
