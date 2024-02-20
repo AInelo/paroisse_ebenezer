@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const session = require('express-session');
 const os = require('os');
 const path = require('path');
 const memberRoutes = require('./routes/memberRoutes');
