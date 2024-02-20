@@ -121,6 +121,10 @@ const signUp = asyncWrapper(async (req, res) => {
     try {
         const { username, password, email } = req.body;
 
+        if (!password) {
+            return res.status(400).json({ error: 'Veuillez fournir un mot de passe.' });
+        }
+
         // Hash du mot de passe avec bcrypt
         const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -128,9 +132,17 @@ const signUp = asyncWrapper(async (req, res) => {
         const user = await User.create({ username, password: hashedPassword, email });
 
         console.log('Utilisateur créé :', user);
-        res.status(201).json({ user });
-        return res.redirect('auth.html');
+        
+       // res.status(status).json(obj)
 
+        // res.status(201).json({ user }, () => {
+        //     // Cette partie du code sera exécutée après l'envoi de la réponse JSON
+        //     res.redirect('auth.html');
+        // });
+
+        res.status(201).json({ user });
+        
+        return;
     } catch (error) {
         if (error.code === 11000) {
             console.error('Erreur E11000 : La clé est en double. L\'utilisateur existe déjà.');
@@ -140,6 +152,8 @@ const signUp = asyncWrapper(async (req, res) => {
             res.status(500).json({ error: 'Erreur lors de la création de l\'utilisateur' });
         }
     }
+
+    res.redirect('auth.html');
 });
 
 const signIn = asyncWrapper(async (req, res) => {
@@ -162,7 +176,7 @@ const signIn = asyncWrapper(async (req, res) => {
 
         // Authentification réussie
         res.status(200).json({ username: existingUser.username });
-        return res.redirect('updatemember.html');
+        
         // Vous pouvez également envisager de générer un token JWT ici pour l'authentification
     } catch (error) {
         if (error.code === 11000) {
@@ -173,6 +187,11 @@ const signIn = asyncWrapper(async (req, res) => {
             res.status(500).json({ error: 'Erreur lors de la connexion' });
         }
     }
+
+
+        // Cette partie du code sera exécutée après l'envoi de la réponse JSON
+        res.redirect('updatemember.html');
+
 });
 
 
