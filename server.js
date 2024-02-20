@@ -11,6 +11,15 @@ require('dotenv').config();
 const notFound = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
 
+app.use(
+  session({
+    secret: 'lionel',
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+
 // middleware
 app.use(express.static('./public'));
 app.use(express.json());
@@ -30,14 +39,34 @@ app.use(errorHandlerMiddleware);
 
 
 
- // Obtenez l'adresse IP de la première interface réseau non interne
- const networkInterfaces = os.networkInterfaces();
- // console.log(networkInterfaces);
- const ipAddress = Object.values(networkInterfaces)
-   .flat()
-   .filter((iface) => iface.family === 'IPv4' && !iface.internal)[0].address;
+// Middleware de vérification d'authentification
+const requireAuth = (req, res, next) => {
+  if (req.session.authenticated) {
+    // Si authentifié, autorisez la requête à continuer
+    next();
+  } else {
+    // Si non authentifié, redirigez vers la page auth.html
+    res.redirect('/auth.html');
+  }
+};
 
- console.log(ipAddress);
+// Route protégée
+app.get('/updatemember.html', requireAuth, (req, res) => {
+  // La route sera uniquement accessible par les utilisateurs authentifiés
+  res.sendFile(path.join(__dirname, 'public', 'updatemember.html'));
+});
+
+
+
+
+// Obtenez l'adresse IP de la première interface réseau non interne
+const networkInterfaces = os.networkInterfaces();
+// console.log(networkInterfaces);
+const ipAddress = Object.values(networkInterfaces)
+  .flat()
+  .filter((iface) => iface.family === 'IPv4' && !iface.internal)[0].address;
+
+console.log(ipAddress);
 
 //  const Port = process.env.PORT || 3000;
 
