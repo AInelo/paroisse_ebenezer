@@ -142,9 +142,9 @@ const signUp = asyncWrapper(async (req, res) => {
         //     res.redirect('auth.html');
         // });
 
-        res.status(201).json({ user });
-        
-        return;
+        //res.status(201).json({ user });
+        res.redirect('/auth.html');
+        // return;
     } catch (error) {
         if (error.code === 11000) {
             console.error('Erreur E11000 : La clé est en double. L\'utilisateur existe déjà.');
@@ -155,7 +155,7 @@ const signUp = asyncWrapper(async (req, res) => {
         }
     }
 
-    res.redirect('auth.html');
+    
 });
 
 const signIn = asyncWrapper(async (req, res) => {
