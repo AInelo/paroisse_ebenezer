@@ -121,6 +121,8 @@ const signUp = asyncWrapper(async (req, res) => {
     try {
         const { username, password, email } = req.body;
 
+        console.log('Contenu de req.body :', req.body);
+
         if (!password) {
             return res.status(400).json({ error: 'Veuillez fournir un mot de passe.' });
         }
