@@ -28,18 +28,6 @@ app.use(express.urlencoded({ extended: true }));
 
 
 
-
-
-// routes
-app.use('/users', userRoutes);
-app.use('/api/v1/member', memberRoutes);
-
-
-app.use(notFound);
-app.use(errorHandlerMiddleware);
-
-
-
 // Middleware de vérification d'authentification
 const requireAuth = async (req, res, next) => {
   if (req.session.authenticated) {
@@ -56,6 +44,19 @@ app.get('/updatemember.html', requireAuth, (req, res) => {
   // La route sera uniquement accessible par les utilisateurs authentifiés
   res.sendFile(path.join(__dirname, 'public', 'updatemember.html'));
 });
+
+
+
+
+// routes
+app.use('/users', userRoutes);
+app.use('/api/v1/member', memberRoutes);
+
+
+app.use(notFound);
+app.use(errorHandlerMiddleware);
+
+
 
 
 
