@@ -74,7 +74,7 @@ const start = async () => {
 
     // Lancer le serveur
     app.listen(port, ipAddress, () =>
-      console.log(`Server is listening on http://${ipAddress}:${port}`)
+    console.log(`Server is listening on http://${ipAddress}:${port}`)
     );
   } catch (error) {
     console.log(error);
