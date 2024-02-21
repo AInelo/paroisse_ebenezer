@@ -8,6 +8,7 @@ const getAllMembers = asyncWrapper(async (req, res) => {
 })
 
 const createMember = asyncWrapper(async (req, res) => {
+  console.log('le contenu de la requête:', req.body)
   const member = await Member.create(req.body)
   res.status(201).json({ member })
 })
