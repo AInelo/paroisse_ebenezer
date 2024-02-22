@@ -23,12 +23,10 @@ formDOM.addEventListener('submit', async (e) => {
     }catch (error) {
         if (error.code === 11000) {
             console.error('Erreur E11000 : La clé est en double. L\'utilisateur existe déjà.');
-         //   res.status(401).json({ msg: 'Nom d\'utilisateur déjà utilisé. Veuillez choisir un autre.' });
             errorMessageElement.textContent = 'Nom d\'utilisateur déjà utilisé. Veuillez choisir un autre.';
         } else {
-            errorMessageElement.textContent = error.message;
+            errorMessageElement.textContent = "Mot de passe ou Username incorrect";
             console.error('Une erreur s\'est produite lors de la connexion :', error);
-           // res.status(500).json({ error: 'Erreur lors de la connexion' });
         }
     }
 })
