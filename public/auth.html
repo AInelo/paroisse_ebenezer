@@ -231,33 +231,33 @@
     ></script>
 
     <script>
-       const form = document.getElementById('form');
-    const errorMessageElement = document.getElementById('error-message');
+//        const form = document.getElementById('form');
+//     const errorMessageElement = document.getElementById('error-message');
 
-     form.addEventListener('submit', async (e) => {
-     e.preventDefault();
+//      form.addEventListener('submit', async (e) => {
+//      e.preventDefault();
 
-     try {
-         const formData = new FormData(form);
+//      try {
+//          const formData = new FormData(form);
 
-         const response = await axios.post(form.action, formData, {headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        // Ajoutez d'autres en-têtes si nécessaires, comme l'en-tête Authorization
-    }});
+//          const response = await axios.post(form.action, formData, {headers: {
+//         'Content-Type': 'application/x-www-form-urlencoded',
+//         // Ajoutez d'autres en-têtes si nécessaires, comme l'en-tête Authorization
+//     }});
 
-         if (response.data.redirectUrl) {
-             // Rediriger l'utilisateur vers l'URL spécifiée
-             window.location.href = response.data.redirectUrl;
-         } else {
-             // Aucune redirection, traitement normal en cas de succès
-             console.log('Connexion réussie:', response.data);
-             errorMessageElement.textContent = '';
-         }
-     } catch (error) {
-         // Erreur côté client, affichez le message d'erreur
-         errorMessageElement.textContent = error.message;
-     }
- });
+//          if (response.data.redirectUrl) {
+//              // Rediriger l'utilisateur vers l'URL spécifiée
+//              window.location.href = response.data.redirectUrl;
+//          } else {
+//              // Aucune redirection, traitement normal en cas de succès
+//              console.log('Connexion réussie:', response.data);
+//              errorMessageElement.textContent = '';
+//          }
+//      } catch (error) {
+//          // Erreur côté client, affichez le message d'erreur
+//          errorMessageElement.textContent = error.message;
+//      }
+//  });
 
 
 
