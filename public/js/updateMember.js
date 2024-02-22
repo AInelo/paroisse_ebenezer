@@ -35,7 +35,7 @@ const showMembers = async () => {
           <input type="text" name="email" id="email" class="py-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5" placeholder="${lastname}" required>
         </div>
 
-        <button type="submit" class="mt-4 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Enregistrer</button>
+        <button id="delete-btn" class="mt-4 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Enregistrer</button>
 
         <!--  <p>Fidèle</p>  -->
             <ul class="flex justify-center mt-4 space-x-4">
@@ -72,14 +72,14 @@ showMembers()
 
 // delete member from /api/v1/member/:id
 
-tasksDOM.addEventListener('click', async (e) => {
+membersDOM.addEventListener('click', async (e) => {
   const el = e.target
   if (el.parentElement.classList.contains('delete-btn')) {
     // loadingDOM.style.visibility = 'visible'
     const id = el.parentElement.dataset.id
     try {
-      await axios.delete(`/api/v1/tasks/${id}`)
-      showTasks()
+      await axios.delete(`/api/v1/member/${id}`)
+      showMembers()
     } catch (error) {
       console.log(error)
     }
