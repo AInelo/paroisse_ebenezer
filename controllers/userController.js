@@ -68,7 +68,10 @@ const signIn = asyncWrapper(async (req, res) => {
 
         //res.status(200).json({ username: existingUser.username });
 
-        res.redirect('/updatemember.html');
+        //res.redirect('/updatemember.html');
+
+        // Redirection renvoyé en format JSON
+        res.status(200).json({ redirectUrl: '/updatemember.html' });
         
         // Vous pouvez également envisager de générer un token JWT ici pour l'authentification
     } catch (error) {
