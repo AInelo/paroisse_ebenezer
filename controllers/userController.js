@@ -48,7 +48,7 @@ const signUp = asyncWrapper(async (req, res) => {
 
 
 const signIn = asyncWrapper(async (req, res) => {
-    try {
+    
         const { username, password } = req.body;
 
         // Recherche de l'utilisateur dans la base de données
@@ -76,15 +76,7 @@ const signIn = asyncWrapper(async (req, res) => {
         res.status(200).json({ redirectUrl: '/updatemember.html' });
         
         // Vous pouvez également envisager de générer un token JWT ici pour l'authentification
-    } catch (error) {
-        if (error.code === 11000) {
-            console.error('Erreur E11000 : La clé est en double. L\'utilisateur existe déjà.');
-            res.status(401).json({ msg: 'Nom d\'utilisateur déjà utilisé. Veuillez choisir un autre.' });
-        } else {
-            console.error('Une erreur s\'est produite lors de la connexion :', error);
-            res.status(500).json({ error: 'Erreur lors de la connexion' });
-        }
-    }
+   
         // Cette partie du code sera exécutée après l'envoi de la réponse JSON
         //res.redirect('updatemember.html');
 });
