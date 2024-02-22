@@ -7,7 +7,7 @@ const membersDOM = document.querySelector('#member')
 // const formAlertDOM = document.querySelector('.form-alert')
 
 
-// Load tasks from /api/v1/member
+// Load member from /api/v1/member
 const showMembers = async () => {
 //   loadingDOM.style.visibility = 'visible'
   try {
@@ -59,7 +59,7 @@ const showMembers = async () => {
   } catch (error) {
     membersDOM.innerHTML =
       '<h5 class="empty-list">There was an error, please try later....</h5>'
-      console.log(allMembers)
+      console.log(allMembers);
   }
 //   loadingDOM.style.visibility = 'hidden'
 }
@@ -70,7 +70,7 @@ showMembers()
 
 
 
-// delete task /api/tasks/:id
+// delete member from /api/v1/member/:id
 
 tasksDOM.addEventListener('click', async (e) => {
   const el = e.target
