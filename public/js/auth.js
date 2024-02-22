@@ -1,3 +1,4 @@
+// For the Authentication
 const formDOM = document.getElementById('form');
 const usernameInput = document.getElementById('username');
 const passwordInput = document.getElementById('password');
