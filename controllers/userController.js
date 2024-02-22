@@ -62,8 +62,6 @@ const signIn = asyncWrapper(async (req, res) => {
         if (!isValidPassword) {
             return res.status(401).json({ msg: 'Mot de passe incorrect.' });
         }
-
-        // Authentification réussie
         // Authentification réussie
         req.session.authenticated = true;
         console.log('Authentification réussie. Authenticated:', req.session.authenticated);
@@ -82,11 +80,8 @@ const signIn = asyncWrapper(async (req, res) => {
             res.status(500).json({ error: 'Erreur lors de la connexion' });
         }
     }
-
-
         // Cette partie du code sera exécutée après l'envoi de la réponse JSON
         //res.redirect('updatemember.html');
-
 });
 
 
