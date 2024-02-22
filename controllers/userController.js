@@ -13,7 +13,6 @@ const signUp = asyncWrapper(async (req, res) => {
         if (!password) {
             return res.status(400).json({ error: 'Veuillez fournir un mot de passe.' });
         }
-
         // Hash du mot de passe avec bcrypt
         const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -21,13 +20,6 @@ const signUp = asyncWrapper(async (req, res) => {
         const user = await User.create({ username, password: hashedPassword, email });
 
         console.log('Utilisateur créé :', user);
-        
-       // res.status(status).json(obj)
-
-        // res.status(201).json({ user }, () => {
-        //     // Cette partie du code sera exécutée après l'envoi de la réponse JSON
-        //     res.redirect('auth.html');
-        // });
 
         //res.status(201).json({ user });
         res.redirect('/auth.html');
@@ -68,17 +60,9 @@ const signIn = asyncWrapper(async (req, res) => {
         req.session.authenticated = true;
         console.log('Authentification réussie. Authenticated:', req.session.authenticated);
 
-        //res.status(200).json({ username: existingUser.username });
-
-        //res.redirect('/updatemember.html');
-
-        // Redirection renvoyé en format JSON
         res.status(200).json({ redirectUrl: '/updatemember.html' });
         
-        // Vous pouvez également envisager de générer un token JWT ici pour l'authentification
-   
-        // Cette partie du code sera exécutée après l'envoi de la réponse JSON
-        //res.redirect('updatemember.html');
+        
 });
 
 
