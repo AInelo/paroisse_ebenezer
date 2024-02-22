@@ -68,15 +68,13 @@ showMembers()
 
 
 
-
-
-// delete member from /api/v1/member/:id
+// Supprimer le membre depuis /api/v1/member/:id
 
 membersDOM.addEventListener('click', async (e) => {
   const el = e.target
-  if (el.parentElement.classList.contains('delete-btn')) {
+  if (el.id === 'delete-btn') {
     // loadingDOM.style.visibility = 'visible'
-    const id = el.parentElement.dataset.id
+    const id = el.dataset.id
     try {
       await axios.delete(`/api/v1/member/${id}`)
       showMembers()
@@ -84,5 +82,25 @@ membersDOM.addEventListener('click', async (e) => {
       console.log(error)
     }
   }
-//   loadingDOM.style.visibility = 'hidden'
+  // loadingDOM.style.visibility = 'hidden'
 })
+
+
+
+
+// // delete member from /api/v1/member/:id
+
+// membersDOM.addEventListener('click', async (e) => {
+//   const el = e.target
+//   if (el.parentElement.classList.contains('delete-btn')) {
+//     // loadingDOM.style.visibility = 'visible'
+//     const id = el.parentElement.dataset.id
+//     try {
+//       await axios.delete(`/api/v1/member/${id}`)
+//       showMembers()
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
+// //   loadingDOM.style.visibility = 'hidden'
+// })
