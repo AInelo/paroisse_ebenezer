@@ -11,10 +11,6 @@ const memberSchema = new mongoose.Schema({
     // required: [true, 'must provide lastname'],
     trim: true,
   },
-  url: {
-    type: String,
-    required: true
-  },
   number: {
     type: String,
   },
