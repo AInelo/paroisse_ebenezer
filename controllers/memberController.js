@@ -13,7 +13,7 @@ const postImage = asyncWrapper(async (req, res) => {
       return res.status(500).json({ error: "No file found" });
     }
     
-    const imageFile = Image({
+    const imageFile = Member({
       filename: req.file.filename,
       filepath: req.file.path,
     });
@@ -27,8 +27,19 @@ const postImage = asyncWrapper(async (req, res) => {
 });
 
 const createMember = asyncWrapper(async (req, res) => {
+
   console.log('le contenu de la requête:', req.body)
+  
+  const memberProfil = Member({
+    name: req.params.name,
+    lastname: req.params.username,
+    number: req.params.number,
+    filename: req.file.filename,
+    filepath: req.file.path
+  })
+
   const member = await Member.create(req.body)
+  
   res.status(201).json({ member })
 })
 
