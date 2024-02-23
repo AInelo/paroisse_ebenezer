@@ -9,7 +9,7 @@ const {
   deleteMember,
 } = require('../controllers/memberController')
 
-router.route('/').get(getAllMembers).post(createMember)
+router.route('/').get(getAllMembers).post(upload.single("image"), createMember)
 router.route('/:id').get(getMember).patch(updateMember).delete(deleteMember)
 
 module.exports = router

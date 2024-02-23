@@ -83,19 +83,7 @@ membersDOM.addEventListener('click', async (e) => {
 })
 
 
-// // delete member from /api/v1/member/:id
 
-// membersDOM.addEventListener('click', async (e) => {
-//   const el = e.target
-//   if (el.parentElement.classList.contains('delete-btn')) {
-//     // loadingDOM.style.visibility = 'visible'
-//     const id = el.parentElement.dataset.id
-//     try {
-//       await axios.delete(`/api/v1/member/${id}`)
-//       showMembers()
-//     } catch (error) {
-//       console.log(error)
-//     }
-//   }
-// //   loadingDOM.style.visibility = 'hidden'
-// })
+// For Create a new member
+const addMemberForm = document.getElementById('addMemberFormChild');
+
