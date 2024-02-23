@@ -134,13 +134,15 @@ const progressBar = document.getElementById('progress-bar');
 
 
 
-
-
-
-const selectImage = document.querySelector('.select-image');
-const inputFile = document.querySelector('#file');
+const selectImage = document.querySelector('#image');
+const inputFile = document.querySelector('#image');
 const imgArea = document.querySelector('.img-area');
 
+
+
+// const selectImage = document.querySelector('.select-image');
+// const inputFile = document.querySelector('#file');
+// const imgArea = document.querySelector('.img-area');
 
 
 selectImage.addEventListener('click', function () {
