@@ -17,6 +17,14 @@ const memberSchema = new mongoose.Schema({
   },
   number: {
     type: String,
+  },
+  filename: {
+    type: String,
+    required: true,
+  },
+  filepath: {
+    type: String,
+    required: true,
   }
   
 })
