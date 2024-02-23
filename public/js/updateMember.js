@@ -1,11 +1,6 @@
 // To Display the form for adding an other member
-
 const membersDOM = document.querySelector('#member')
 // const loadingDOM = document.querySelector('.loading-text')
-// const formDOM = document.querySelector('.task-form')
-// const taskInputDOM = document.querySelector('.task-input')
-// const formAlertDOM = document.querySelector('.form-alert')
-
 
 // Load member from /api/v1/member
 const showMembers = async () => {
