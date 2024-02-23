@@ -35,12 +35,12 @@ const showMembers = async () => {
         </div>`
       })
       .join('')
-      console.log(allMembers)
+     // console.log(allMembers)
     membersDOM.innerHTML = allMembers
   } catch (error) {
     membersDOM.innerHTML =
       '<h5 class="empty-list">There was an error, please try later....</h5>'
-      console.log(allMembers)
+    //  console.log(allMembers)
   }
 //   loadingDOM.style.visibility = 'hidden'
 }
