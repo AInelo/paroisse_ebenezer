@@ -89,7 +89,17 @@ const addMemberForm = document.getElementById('addMember');
 const image = document.getElementById('image');
 const addMemberName = document.getElementById("addMemberName");
 const addMemberLastname = document.getElementById('addMemberLastname');
-const addMemberNumber = document.getElementById('addMemberNumber')
+const addMemberNumber = document.getElementById('addMemberNumber');
+
+addMemberForm.addEventListener('submit', async (e)=> {
+    try {
+
+    } catch {
+      
+    }
+
+
+})
 
 
 
