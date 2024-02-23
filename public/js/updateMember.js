@@ -111,8 +111,8 @@ const addMemberLastname = document.getElementById('addMemberLastname');
 const addMemberNumber = document.getElementById('addMemberNumber');
 
 addMemberForm.addEventListener('submit', async (e) => {
-  e.preventDefault(); // Empêcher le comportement par défaut du formulaire
-
+  //e.preventDefault(); // Empêcher le comportement par défaut du formulaire
+  console.log('Voici le', addMemberLastname)
   try {
     // Créer un objet FormData pour inclure le fichier et les données du formulaire
     const formData = new FormData();
