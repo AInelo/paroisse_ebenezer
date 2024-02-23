@@ -86,6 +86,30 @@ membersDOM.addEventListener('click', async (e) => {
 
 // For Create a new member
 const addMemberForm = document.getElementById('addMember');
+const image = document.getElementById('image');
 
 
 
+
+
+
+
+
+
+
+
+
+
+// Update member information from /api/v1/member/:id
+// membersDOM.addEventListener('click', async (e) => {
+//   const el = e.target
+//   if (el.id.startsWith('delete-btn-')) {
+//     const id = el.id.replace('delete-btn-', '')
+//     try {
+//       await axios.delete(`/api/v1/member/${id}`)
+//       showMembers()
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
+// })
