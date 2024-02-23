@@ -87,7 +87,9 @@ membersDOM.addEventListener('click', async (e) => {
 // For Create a new member
 const addMemberForm = document.getElementById('addMember');
 const image = document.getElementById('image');
-
+const addMemberName = document.getElementById("addMemberName");
+const addMemberLastname = document.getElementById('addMemberLastname');
+const addMemberNumber = document.getElementById('addMemberNumber')
 
 
 
