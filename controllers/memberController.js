@@ -27,21 +27,20 @@ const postImage = asyncWrapper(async (req, res) => {
 });
 
 const createMember = asyncWrapper(async (req, res) => {
-
-  console.log('le contenu de la requête:', req.body)
+  // Utilisez req.body au lieu de req.params pour récupérer les données du corps de la requête
+  console.log('le contenu de la requête:', req.body);
   
-  const memberProfil = Member({
-    name: req.params.name,
-    lastname: req.params.username,
-    number: req.params.number,
+  // Utilisez Member.create() au lieu de créer une instance avec new Member() et appeler ensuite create()
+  const member = await Member.create({
+    name: req.body.name,
+    lastname: req.body.username, // Je suppose que vous voulez req.body.username au lieu de req.params.username
+    number: req.body.number,
     filename: req.file.filename,
     filepath: req.file.path
-  })
+  });
 
-  const member = await Member.create(req.body)
-  
-  res.status(201).json({ member })
-})
+  res.status(201).json({ member });
+});
 
 const getMember = asyncWrapper(async (req, res, next) => {
   const { id: memberID } = req.params
