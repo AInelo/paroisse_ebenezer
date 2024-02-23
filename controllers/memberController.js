@@ -33,7 +33,7 @@ const createMember = asyncWrapper(async (req, res) => {
   // Utilisez Member.create() au lieu de créer une instance avec new Member() et appeler ensuite create()
   const member = await Member.create({
     name: req.body.name,
-    lastname: req.body.username, // Je suppose que vous voulez req.body.username au lieu de req.params.username
+    lastname: req.body.lastname, // Je suppose que vous voulez req.body.username au lieu de req.params.username
     number: req.body.number,
     filename: req.file.filename,
     filepath: req.file.path
