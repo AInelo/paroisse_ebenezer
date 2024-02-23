@@ -82,41 +82,114 @@ membersDOM.addEventListener('click', async (e) => {
 
 // For Create a new member
 
+// const addMemberForm = document.getElementById('addMember');
+// const imageInput = document.getElementById('image');
+// const addMemberName = document.getElementById('addMemberName');
+// const addMemberLastname = document.getElementById('addMemberLastname');
+// const addMemberNumber = document.getElementById('addMemberNumber');
+
+// addMemberForm.addEventListener('submit', async (e) => {
+//   //e.preventDefault(); // Empêcher le comportement par défaut du formulaire
+//   console.log('Voici le', addMemberLastname)
+//   try {
+//     // Créer un objet FormData pour inclure le fichier et les données du formulaire
+//     const formData = new FormData();
+//     formData.append('name', addMemberName.value);
+//     formData.append('lastname', addMemberLastname.value);
+//     formData.append('number', addMemberNumber.value);
+//     formData.append('image', imageInput.files[0]); // Remplacez 'imageInput' par votre référence réelle à l'élément d'entrée de fichier
+
+//     // Envoyer la requête POST avec Axios
+//     const response = await axios.post('/api/v1/member', formData, {
+//       headers: {
+//         'Content-Type': 'multipart/form-data', // Assurez-vous d'ajuster le type de contenu en fonction de ce que votre serveur attend
+//       },
+//     });
+
+//     console.log('Réponse du serveur:', response.data);
+//     // Gérer la réponse du serveur ici (par exemple, afficher un message de réussite)
+
+//   } catch (error) {
+//     console.error('Erreur lors de la requête POST:', error);
+//     // Gérer les erreurs ici (par exemple, afficher un message d'erreur)
+//   }
+// });
+
+
+
+
+
+
+
+
+
+
 const addMemberForm = document.getElementById('addMember');
 const imageInput = document.getElementById('image');
 const addMemberName = document.getElementById('addMemberName');
 const addMemberLastname = document.getElementById('addMemberLastname');
 const addMemberNumber = document.getElementById('addMemberNumber');
+const progressBarContainer = document.getElementById('progress-bar-container');
+const progressBar = document.getElementById('progress-bar');
 
 addMemberForm.addEventListener('submit', async (e) => {
-  //e.preventDefault(); // Empêcher le comportement par défaut du formulaire
-  console.log('Voici le', addMemberLastname)
+  e.preventDefault();
+
   try {
-    // Créer un objet FormData pour inclure le fichier et les données du formulaire
     const formData = new FormData();
     formData.append('name', addMemberName.value);
     formData.append('lastname', addMemberLastname.value);
     formData.append('number', addMemberNumber.value);
-    formData.append('image', imageInput.files[0]); // Remplacez 'imageInput' par votre référence réelle à l'élément d'entrée de fichier
+    formData.append('image', imageInput.files[0]);
 
-    // Envoyer la requête POST avec Axios
-    const response = await axios.post('/api/v1/member', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data', // Assurez-vous d'ajuster le type de contenu en fonction de ce que votre serveur attend
-      },
+    // Afficher la barre de progression avant le téléchargement
+    progressBarContainer.classList.remove('hidden');
+
+    // Créer une instance XMLHttpRequest pour gérer les événements de progression
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/api/v1/member', true);
+
+    // Suivre les événements de progression
+    xhr.upload.addEventListener('progress', (event) => {
+      if (event.lengthComputable) {
+        const percentage = (event.loaded / event.total) * 100;
+        progressBar.style.width = `${percentage}%`;
+      }
     });
 
-    console.log('Réponse du serveur:', response.data);
-    // Gérer la réponse du serveur ici (par exemple, afficher un message de réussite)
+    // Gérer la fin du téléchargement
+    xhr.addEventListener('load', () => {
+      // Masquer la barre de progression après le téléchargement
+      progressBarContainer.classList.add('hidden');
 
+      // Gérer la réponse du serveur ici
+      console.log('Réponse du serveur:', xhr.responseText);
+    });
+
+    // Gérer les erreurs
+    xhr.addEventListener('error', () => {
+      console.error('Erreur lors de la requête POST');
+    });
+
+    // Envoyer la requête avec Axios
+    await axios.post('/api/v1/member', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      // Utiliser une instance XMLHttpRequest personnalisée pour gérer les événements
+      onUploadProgress: (progressEvent) => {
+        const percentage = (progressEvent.loaded / progressEvent.total) * 100;
+        progressBar.style.width = `${percentage}%`;
+      },
+      // Utiliser la fonction onDownloadProgress pour une réponse téléchargée (si nécessaire)
+    });
+
+    // Réinitialiser la barre de progression après le téléchargement
+    progressBar.style.width = '0%';
   } catch (error) {
     console.error('Erreur lors de la requête POST:', error);
-    // Gérer les erreurs ici (par exemple, afficher un message d'erreur)
   }
 });
-
-
-
 
 
 
