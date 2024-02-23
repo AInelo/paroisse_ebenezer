@@ -132,66 +132,52 @@ const addMemberNumber = document.getElementById('addMemberNumber');
 const progressBarContainer = document.getElementById('progress-bar-container');
 const progressBar = document.getElementById('progress-bar');
 
-addMemberForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
 
-  try {
+
+
+imageInput.addEventListener('change', async (event) => {
+  const file = event.target.files[0];
+
+  if (file) {
     const formData = new FormData();
     formData.append('name', addMemberName.value);
     formData.append('lastname', addMemberLastname.value);
     formData.append('number', addMemberNumber.value);
-    formData.append('image', imageInput.files[0]);
+    formData.append('image', file);
 
     // Afficher la barre de progression avant le téléchargement
     progressBarContainer.classList.remove('hidden');
 
-    // Créer une instance XMLHttpRequest pour gérer les événements de progression
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', '/api/v1/member', true);
+    try {
+      // Utiliser Axios pour envoyer la requête POST avec la configuration onUploadProgress
+      await axios.post('/api/v1/member', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        onUploadProgress: (progressEvent) => {
+          if (progressEvent.lengthComputable) {
+            const percentage = (progressEvent.loaded / progressEvent.total) * 100;
+            progressBar.style.width = `${percentage}%`;
+          }
+        },
+      });
 
-    // Suivre les événements de progression
-    xhr.upload.addEventListener('progress', (event) => {
-      if (event.lengthComputable) {
-        const percentage = (event.loaded / event.total) * 100;
-        progressBar.style.width = `${percentage}%`;
-      }
-    });
+      // Réinitialiser la barre de progression après le téléchargement
+      progressBar.style.width = '0%';
+    } catch (error) {
+      console.error('Erreur lors de la requête POST:', error);
+    }
 
-    // Gérer la fin du téléchargement
-    xhr.addEventListener('load', () => {
-      // Masquer la barre de progression après le téléchargement
-      progressBarContainer.classList.add('hidden');
-
-      // Gérer la réponse du serveur ici
-      console.log('Réponse du serveur:', xhr.responseText);
-    });
-
-    // Gérer les erreurs
-    xhr.addEventListener('error', () => {
-      console.error('Erreur lors de la requête POST');
-    });
-
-    // Envoyer la requête avec Axios
-    await axios.post('/api/v1/member', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-      // Utiliser une instance XMLHttpRequest personnalisée pour gérer les événements
-      onUploadProgress: (progressEvent) => {
-        const percentage = (progressEvent.loaded / progressEvent.total) * 100;
-        progressBar.style.width = `${percentage}%`;
-      },
-      // Utiliser la fonction onDownloadProgress pour une réponse téléchargée (si nécessaire)
-    });
-
-    // Réinitialiser la barre de progression après le téléchargement
-    progressBar.style.width = '0%';
-  } catch (error) {
-    console.error('Erreur lors de la requête POST:', error);
+    // Réinitialiser la valeur de l'input pour permettre de sélectionner à nouveau le même fichier
+    imageInput.value = '';
   }
 });
 
-
+// Vous pouvez également conserver votre gestionnaire d'événements submit ici
+addMemberForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  // Le reste de votre code pour le traitement du formulaire
+});
 
 
 
