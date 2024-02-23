@@ -86,24 +86,7 @@ membersDOM.addEventListener('click', async (e) => {
 
 
 // For Create a new member
-// const addMemberForm = document.getElementById('addMember');
-// const image = document.getElementById('image');
-// const addMemberName = document.getElementById("addMemberName");
-// const addMemberLastname = document.getElementById('addMemberLastname');
-// const addMemberNumber = document.getElementById('addMemberNumber');
 
-// addMemberForm.addEventListener('submit', async (e)=> {
-//     try {
-//       await axios.post('api/v1/member')
-//     } catch {
-     
-//     }
-
-
-// })
-
-
-// Sélectionner le formulaire et les champs nécessaires
 const addMemberForm = document.getElementById('addMember');
 const imageInput = document.getElementById('image');
 const addMemberName = document.getElementById('addMemberName');
