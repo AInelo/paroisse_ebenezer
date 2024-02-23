@@ -46,6 +46,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Middleware pour servir des fichiers statiques depuis le dossier public
 app.use(express.static('./public'));
+app.use(express.static('./uploads'));
 
 // Routes
 app.use('/users', userRoutes);
