@@ -1,0 +1,13 @@
+/* Ajoutez vos styles CSS ici */
+.hidden {
+    display: none;
+  }
+  
+  .progress-bar {
+    height: 10px;
+    background-color: #4caf50;
+    width: 0;
+  }
+  
+  /* ... Autres styles ... */
+  

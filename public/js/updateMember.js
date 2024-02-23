@@ -174,10 +174,34 @@ imageInput.addEventListener('change', async (event) => {
 });
 
 // Vous pouvez également conserver votre gestionnaire d'événements submit ici
-addMemberForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  // Le reste de votre code pour le traitement du formulaire
+
+addMemberForm.addEventListener('submit', async (e) => {
+  //e.preventDefault(); // Empêcher le comportement par défaut du formulaire
+  console.log('Voici le', addMemberLastname)
+  try {
+    // Créer un objet FormData pour inclure le fichier et les données du formulaire
+    const formData = new FormData();
+    formData.append('name', addMemberName.value);
+    formData.append('lastname', addMemberLastname.value);
+    formData.append('number', addMemberNumber.value);
+    formData.append('image', imageInput.files[0]); // Remplacez 'imageInput' par votre référence réelle à l'élément d'entrée de fichier
+
+    // Envoyer la requête POST avec Axios
+    const response = await axios.post('/api/v1/member', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data', // Assurez-vous d'ajuster le type de contenu en fonction de ce que votre serveur attend
+      },
+    });
+
+    console.log('Réponse du serveur:', response.data);
+    // Gérer la réponse du serveur ici (par exemple, afficher un message de réussite)
+
+  } catch (error) {
+    console.error('Erreur lors de la requête POST:', error);
+    // Gérer les erreurs ici (par exemple, afficher un message d'erreur)
+  }
 });
+
 
 
 
