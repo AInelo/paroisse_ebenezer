@@ -132,46 +132,74 @@ const addMemberNumber = document.getElementById('addMemberNumber');
 const progressBarContainer = document.getElementById('progress-bar-container');
 const progressBar = document.getElementById('progress-bar');
 
+const selectImage = document.querySelector('.select-image');
+const inputFile = document.querySelector('#file');
+const imgArea = document.querySelector('.img-area');
+
+selectImage.addEventListener('click', function () {
+	inputFile.click();
+})
+
+inputFile.addEventListener('change', function () {
+	const image = this.files[0]
+	if(image.size < 2000000) {
+		const reader = new FileReader();
+		reader.onload = ()=> {
+			const allImg = imgArea.querySelectorAll('img');
+			allImg.forEach(item=> item.remove());
+			const imgUrl = reader.result;
+			const img = document.createElement('img');
+			img.src = imgUrl;
+			imgArea.appendChild(img);
+			imgArea.classList.add('active');
+			imgArea.dataset.img = image.name;
+		}
+		reader.readAsDataURL(image);
+	} else {
+		alert("Image size more than 2MB");
+	}
+})
 
 
 
-imageInput.addEventListener('change', async (event) => {
-  const file = event.target.files[0];
 
-  if (file) {
-    const formData = new FormData();
-    formData.append('name', addMemberName.value);
-    formData.append('lastname', addMemberLastname.value);
-    formData.append('number', addMemberNumber.value);
-    formData.append('image', file);
+// imageInput.addEventListener('change', async (event) => {
+//   const file = event.target.files[0];
 
-    // Afficher la barre de progression avant le téléchargement
-    progressBarContainer.classList.remove('hidden');
+//   if (file) {
+//     const formData = new FormData();
+//     formData.append('name', addMemberName.value);
+//     formData.append('lastname', addMemberLastname.value);
+//     formData.append('number', addMemberNumber.value);
+//     formData.append('image', file);
 
-    try {
-      // Utiliser Axios pour envoyer la requête POST avec la configuration onUploadProgress
-      await axios.post('/api/v1/member', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-        onUploadProgress: (progressEvent) => {
-          if (progressEvent.lengthComputable) {
-            const percentage = (progressEvent.loaded / progressEvent.total) * 100;
-            progressBar.style.width = `${percentage}%`;
-          }
-        },
-      });
+//     // Afficher la barre de progression avant le téléchargement
+//     progressBarContainer.classList.remove('hidden');
 
-      // Réinitialiser la barre de progression après le téléchargement
-      progressBar.style.width = '0%';
-    } catch (error) {
-      console.error('Erreur lors de la requête POST:', error);
-    }
+//     try {
+//       // Utiliser Axios pour envoyer la requête POST avec la configuration onUploadProgress
+//       await axios.post('/api/v1/member', formData, {
+//         headers: {
+//           'Content-Type': 'multipart/form-data',
+//         },
+//         onUploadProgress: (progressEvent) => {
+//           if (progressEvent.lengthComputable) {
+//             const percentage = (progressEvent.loaded / progressEvent.total) * 100;
+//             progressBar.style.width = `${percentage}%`;
+//           }
+//         },
+//       });
 
-    // Réinitialiser la valeur de l'input pour permettre de sélectionner à nouveau le même fichier
-    imageInput.value = '';
-  }
-});
+//       // Réinitialiser la barre de progression après le téléchargement
+//       progressBar.style.width = '0%';
+//     } catch (error) {
+//       console.error('Erreur lors de la requête POST:', error);
+//     }
+
+//     // Réinitialiser la valeur de l'input pour permettre de sélectionner à nouveau le même fichier
+//     imageInput.value = '';
+//   }
+// });
 
 // Vous pouvez également conserver votre gestionnaire d'événements submit ici
 
