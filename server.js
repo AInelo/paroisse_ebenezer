@@ -65,7 +65,7 @@ const ipAddress = Object.values(networkInterfaces)
   .filter((iface) => iface.family === 'IPv4' && !iface.internal)[0].address;
 
 // Définir le port
-const port = process.env.PORT || 5000;
+const port =  5000;
 
 // Démarrer le serveur
 const start = async () => {
